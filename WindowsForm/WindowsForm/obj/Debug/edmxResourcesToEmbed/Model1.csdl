@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SupplementFactsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="importPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="salePrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="stock" Type="Int32" />
+    <NavigationProperty Name="ReceiptDetails" Relationship="Self.FK_ReceiptDetail_Goods" FromRole="Goods" ToRole="ReceiptDetail" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ReceiptDetail" Relationship="Self.FK_ReceiptDetail_Receipt" FromRole="Receipt" ToRole="ReceiptDetail" />
+  </EntityType>
+  <EntityType Name="ReceiptDetail">
+    <Key>
+      <PropertyRef Name="receiptID" />
+    </Key>
+    <Property Name="receiptID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Goods" Relationship="Self.FK_ReceiptDetail_Goods" FromRole="ReceiptDetail" ToRole="Goods" />
+    <NavigationProperty Name="Receipt" Relationship="Self.FK_ReceiptDetail_Receipt" FromRole="ReceiptDetail" ToRole="Receipt" />
+  </EntityType>
+  <Association Name="FK_ReceiptDetail_Goods">
+    <End Role="Goods" Type="SupplementFactsModel.Goods" Multiplicity="0..1" />
+    <End Role="ReceiptDetail" Type="Self.ReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReceiptDetail">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiptDetail_Receipt">
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+    <End Role="ReceiptDetail" Type="Self.ReceiptDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReceiptDetail">
+        <PropertyRef Name="receiptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SupplementFactsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Goods1" EntityType="SupplementFactsModel.Goods" />
+    <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+    <EntitySet Name="ReceiptDetails" EntityType="Self.ReceiptDetail" />
+    <AssociationSet Name="FK_ReceiptDetail_Goods" Association="Self.FK_ReceiptDetail_Goods">
+      <End Role="Goods" EntitySet="Goods1" />
+      <End Role="ReceiptDetail" EntitySet="ReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiptDetail_Receipt" Association="Self.FK_ReceiptDetail_Receipt">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="ReceiptDetail" EntitySet="ReceiptDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
