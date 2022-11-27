@@ -41,7 +41,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.goodsListTab = new System.Windows.Forms.TabPage();
             this.goodsReceivedTab = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -49,13 +48,36 @@
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
+            this.goodsListTab = new System.Windows.Forms.TabPage();
             this.goodsTableAdapter = new WindowsForm.SupplementFactsDataSetTableAdapters.GoodsTableAdapter();
+            this.label3 = new System.Windows.Forms.Label();
+            this.supplementFactsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.goodsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.goodsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.goodsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.supplementFactsDataSet1 = new WindowsForm.SupplementFactsDataSet1();
+            this.goodsBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
+            this.goodsTableAdapter1 = new WindowsForm.SupplementFactsDataSet1TableAdapters.GoodsTableAdapter();
+            this.indentifyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.goodsReceivedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.goodsListTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource4)).BeginInit();
             this.SuspendLayout();
             // 
             // goodsDeliTab
@@ -178,17 +200,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1263, 758);
             this.tabControl1.TabIndex = 1;
             // 
-            // goodsListTab
-            // 
-            this.goodsListTab.Font = new System.Drawing.Font("Times New Roman", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goodsListTab.Location = new System.Drawing.Point(4, 32);
-            this.goodsListTab.Name = "goodsListTab";
-            this.goodsListTab.Padding = new System.Windows.Forms.Padding(3);
-            this.goodsListTab.Size = new System.Drawing.Size(1255, 722);
-            this.goodsListTab.TabIndex = 3;
-            this.goodsListTab.Text = "Goods List";
-            this.goodsListTab.UseVisualStyleBackColor = true;
-            // 
             // goodsReceivedTab
             // 
             this.goodsReceivedTab.Controls.Add(this.label5);
@@ -227,6 +238,7 @@
             this.button5.TabIndex = 12;
             this.button5.Text = "Update";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -236,6 +248,7 @@
             this.button4.TabIndex = 11;
             this.button4.Text = "Remove";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label9
             // 
@@ -268,9 +281,132 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // goodsListTab
+            // 
+            this.goodsListTab.Controls.Add(this.dataGridView2);
+            this.goodsListTab.Controls.Add(this.label3);
+            this.goodsListTab.Font = new System.Drawing.Font("Times New Roman", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goodsListTab.Location = new System.Drawing.Point(4, 32);
+            this.goodsListTab.Name = "goodsListTab";
+            this.goodsListTab.Padding = new System.Windows.Forms.Padding(3);
+            this.goodsListTab.Size = new System.Drawing.Size(1255, 722);
+            this.goodsListTab.TabIndex = 3;
+            this.goodsListTab.Text = "Goods List";
+            this.goodsListTab.UseVisualStyleBackColor = true;
+            // 
             // goodsTableAdapter
             // 
             this.goodsTableAdapter.ClearBeforeFill = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 16.30189F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(555, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 29);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Goods List";
+            // 
+            // supplementFactsDataSetBindingSource
+            // 
+            this.supplementFactsDataSetBindingSource.DataSource = this.supplementFactsDataSet;
+            this.supplementFactsDataSetBindingSource.Position = 0;
+            // 
+            // goodsBindingSource1
+            // 
+            this.goodsBindingSource1.DataMember = "Goods";
+            this.goodsBindingSource1.DataSource = this.supplementFactsDataSet;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indentifyCode,
+            this.productName,
+            this.importPrice,
+            this.salePrice,
+            this.stock});
+            this.dataGridView2.DataSource = this.goodsBindingSource4;
+            this.dataGridView2.Location = new System.Drawing.Point(7, 89);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 45;
+            this.dataGridView2.Size = new System.Drawing.Size(1240, 626);
+            this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // goodsBindingSource2
+            // 
+            this.goodsBindingSource2.DataMember = "Goods";
+            this.goodsBindingSource2.DataSource = this.supplementFactsDataSetBindingSource;
+            // 
+            // goodsBindingSource3
+            // 
+            this.goodsBindingSource3.DataMember = "Goods";
+            this.goodsBindingSource3.DataSource = this.supplementFactsDataSet;
+            // 
+            // supplementFactsDataSet1
+            // 
+            this.supplementFactsDataSet1.DataSetName = "SupplementFactsDataSet1";
+            this.supplementFactsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // goodsBindingSource4
+            // 
+            this.goodsBindingSource4.DataMember = "Goods";
+            this.goodsBindingSource4.DataSource = this.supplementFactsDataSet1;
+            // 
+            // goodsTableAdapter1
+            // 
+            this.goodsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // indentifyCode
+            // 
+            this.indentifyCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.indentifyCode.DataPropertyName = "ID";
+            this.indentifyCode.HeaderText = "Indentify Code";
+            this.indentifyCode.MinimumWidth = 6;
+            this.indentifyCode.Name = "indentifyCode";
+            this.indentifyCode.ReadOnly = true;
+            this.indentifyCode.Width = 149;
+            // 
+            // productName
+            // 
+            this.productName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.productName.DataPropertyName = "name";
+            this.productName.HeaderText = "Product Name";
+            this.productName.MinimumWidth = 6;
+            this.productName.Name = "productName";
+            // 
+            // importPrice
+            // 
+            this.importPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.importPrice.DataPropertyName = "importPrice";
+            this.importPrice.HeaderText = "Import Price";
+            this.importPrice.MinimumWidth = 6;
+            this.importPrice.Name = "importPrice";
+            this.importPrice.ReadOnly = true;
+            this.importPrice.Width = 131;
+            // 
+            // salePrice
+            // 
+            this.salePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.salePrice.DataPropertyName = "salePrice";
+            this.salePrice.HeaderText = "Sale Price";
+            this.salePrice.MinimumWidth = 6;
+            this.salePrice.Name = "salePrice";
+            this.salePrice.ReadOnly = true;
+            this.salePrice.Width = 111;
+            // 
+            // stock
+            // 
+            this.stock.DataPropertyName = "stock";
+            this.stock.HeaderText = "Stock";
+            this.stock.MinimumWidth = 6;
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            this.stock.Width = 110;
             // 
             // Form1
             // 
@@ -289,6 +425,15 @@
             this.goodsReceivedTab.ResumeLayout(false);
             this.goodsReceivedTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.goodsListTab.ResumeLayout(false);
+            this.goodsListTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -316,6 +461,20 @@
         private SupplementFactsDataSet supplementFactsDataSet;
         private System.Windows.Forms.BindingSource goodsBindingSource;
         private SupplementFactsDataSetTableAdapters.GoodsTableAdapter goodsTableAdapter;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource supplementFactsDataSetBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource goodsBindingSource1;
+        private System.Windows.Forms.BindingSource goodsBindingSource3;
+        private System.Windows.Forms.BindingSource goodsBindingSource2;
+        private SupplementFactsDataSet1 supplementFactsDataSet1;
+        private System.Windows.Forms.BindingSource goodsBindingSource4;
+        private SupplementFactsDataSet1TableAdapters.GoodsTableAdapter goodsTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indentifyCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn importPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock;
     }
 }
 

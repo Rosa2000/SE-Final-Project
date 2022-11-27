@@ -32,19 +32,15 @@ namespace WindowsForm
             dt.Columns.Add("Total Amount", typeof(int));
 
             dataGridView1.RowHeadersVisible = false;
+            dataGridView2.RowHeadersVisible= false;
 
-            int total = 0;
+            button1.Enabled= false;
+            button4.Enabled= false;
+            button5.Enabled = false;
+
             if (dataGridView1.Rows.Count == 0)
             {
                 label5.Text = "Total: 0";
-            }
-            else
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    total += (int)row["Total Amount"];
-                    label5.Text = "Total: " + total;
-                }
             }
 
         }
@@ -83,11 +79,17 @@ namespace WindowsForm
                     rowNumber = 0;
                 }
                 int goodsRowNumber = rowNumber + 1;
+                int total = 0;
 
                 //Add product to list
                 dt.Rows.Add(goodsRowNumber, goodsName, quantity, importUnitPrice, totalAmount);
                 dataGridView1.DataSource = dt;
 
+                foreach (DataRow row in dt.Rows)
+                {
+                    total += (int)row["Total Amount"];
+                    label5.Text = "Total: " + total;
+                }
             }
         }
 
@@ -98,6 +100,8 @@ namespace WindowsForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'supplementFactsDataSet1.Goods' table. You can move, or remove it, as needed.
+            this.goodsTableAdapter1.Fill(this.supplementFactsDataSet1.Goods);
             // TODO: This line of code loads data into the 'supplementFactsDataSet.Goods' table. You can move, or remove it, as needed.
             this.goodsTableAdapter.Fill(this.supplementFactsDataSet.Goods);
 
@@ -110,6 +114,21 @@ namespace WindowsForm
 
         //Create button
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }
