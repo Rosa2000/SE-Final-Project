@@ -15,6 +15,7 @@
     <EntitySetMapping Name="Receipts">
       <EntityTypeMapping TypeName="SupplementFactsModel.Receipt">
         <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="total" ColumnName="total" />
           <ScalarProperty Name="createDate" ColumnName="createDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>

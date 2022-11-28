@@ -6,7 +6,6 @@ F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\bin\Debug\Entity
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\bin\Debug\EntityFramework.xml
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\bin\Debug\EntityFramework.SqlServer.xml
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.AssemblyReference.cache
-F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.SuggestedBindingRedirects.cache
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\obj\Debug\WindowsFormsApp.Form1.resources
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\obj\Debug\WindowsFormsApp.Properties.Resources.resources
 F:\TRYHARD\HK1 - 20222023\CNPM\SE-Final-Project\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.GenerateResource.cache

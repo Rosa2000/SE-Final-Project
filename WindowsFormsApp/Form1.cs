@@ -26,8 +26,8 @@ namespace WindowsFormsApp
 
             dt.Columns.Add("Goods Name", typeof(string));
             dt.Columns.Add("Quantity", typeof(int));
-            dt.Columns.Add("Import Unit Price", typeof(int));
-            dt.Columns.Add("Total Amount", typeof(long));
+            dt.Columns.Add("Import Price", typeof(int));
+            dt.Columns.Add("Total Value", typeof(long));
 
             dataGridView1.RowHeadersVisible = false;
             dataGridView2.RowHeadersVisible = false;
@@ -74,13 +74,13 @@ namespace WindowsFormsApp
             goods = context.Goods.Where(x => x.name == @goodsName).FirstOrDefault();
             goodsName = goods.name;
             long quantity = Convert.ToInt32(textBox2.Text);
-            long importUnitPrice = (long)goods.importPrice;
-            long totalAmount = quantity * importUnitPrice;
+            long importPrice = (long)goods.importPrice;
+            long totalValue = quantity * importPrice;
 
             if (dt.Rows.Count == 0)
             {
-                //Add goods to list
-                dt.Rows.Add(goodsName, quantity, importUnitPrice, totalAmount);
+                //Add goods to preview list
+                dt.Rows.Add(goodsName, quantity, importPrice, totalValue);
                 dataGridView1.DataSource = dt;
                 foreach (DataRow row in dt.Rows)
                 {
@@ -101,14 +101,14 @@ namespace WindowsFormsApp
                     dt.Rows.Remove(row);
                 } 
                  
-                dt.Rows.Add(goodsName, quantity, importUnitPrice, totalAmount);
+                dt.Rows.Add(goodsName, quantity, importPrice, totalValue);
                 dataGridView1.DataSource = dt;
             }
             
 
             foreach (DataRow row in dt.Rows)
             {
-                total += (long)row["Total Amount"];
+                total += (long)row["Total Value"];
                 label5.Text = "Total: " + total;
             }
 
@@ -146,6 +146,7 @@ namespace WindowsFormsApp
             int receiptID;
             DateTime date = DateTime.Now;
 
+            //Update goods stock
             foreach (DataRow row in dt.Rows)
             {
 
@@ -158,6 +159,7 @@ namespace WindowsFormsApp
                 long salePrice = (long)goods.salePrice.Value;
                 int stock = (int)goods.stock.Value;
                 int quantity = (int)row["Quantity"];
+                long totalValue = (long)row["Total Value"];
 
                 stock += quantity;
 
@@ -173,6 +175,8 @@ namespace WindowsFormsApp
 
             // Create new goods received record
             receipt = context.Receipts.OrderByDescending(p => p.ID).FirstOrDefault();
+
+            //Auto increment Primary Key
             if (receipt != null)
             {
                 receiptID = (int)receipt.ID + 1;
@@ -181,7 +185,8 @@ namespace WindowsFormsApp
             {
                 receiptID = 1;
             }
-            context.Receipts.Add(new Receipt { ID = receiptID, createDate = date });
+
+            context.Receipts.Add(new Receipt { ID = receiptID, createDate = date, total = total });
             context.SaveChanges();
 
             //Create goods received detail record
@@ -190,12 +195,14 @@ namespace WindowsFormsApp
                 string goodsName = (string)row["Goods Name"];
                 goods = context.Goods.Where(x => x.name == @goodsName).FirstOrDefault();
                 int quantity = (int)row["Quantity"];
+                long totalValue = (long)row["Total Value"];
+
                 ReceiptDetail receiptDetail = new ReceiptDetail()
                 {
                     receiptID = receiptID,
                     goodsID = goods.ID,
                     quantity = quantity,
-                    total = total,
+                    total = totalValue,
                 };
 
                 Console.WriteLine(receiptDetail.ToString());
@@ -206,10 +213,9 @@ namespace WindowsFormsApp
             }
 
             MessageBox.Show("SUCCESSFULLY CREATED!", "Good Received Note");
-            
+
             //Reset form
-            dt.Rows.Clear();
-            button1.Enabled = false;
+            Clear();
 
         }
 
@@ -231,6 +237,18 @@ namespace WindowsFormsApp
         void GoodsDataGridView()
         {
             dataGridView2.DataSource = context.Goods.ToList<Goods>();
+        }
+
+        void Clear()
+        {
+
+            label5.Text = "Total: ";
+
+            button1.Enabled = false;
+            button4.Enabled = false;
+            textBox2.Text = string.Empty;
+
+            dt.Rows.Clear();
         }
     }
 }

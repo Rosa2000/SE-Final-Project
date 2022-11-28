@@ -30,6 +30,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="ReceiptDetails" Relationship="SupplementFactsModel.FK_ReceiptDetails_Receipt1" FromRole="Receipt" ToRole="ReceiptDetail" />
   </EntityType>
   <EntityType Name="ReceiptDetail">

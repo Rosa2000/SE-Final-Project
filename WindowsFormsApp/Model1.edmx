@@ -21,6 +21,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="createDate" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ReceiptDetails">
           <Key>
@@ -103,6 +104,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="ReceiptDetails" Relationship="SupplementFactsModel.FK_ReceiptDetails_Receipt1" FromRole="Receipt" ToRole="ReceiptDetail" />
         </EntityType>
         <EntityType Name="ReceiptDetail">
@@ -161,6 +163,7 @@
           <EntitySetMapping Name="Receipts">
             <EntityTypeMapping TypeName="SupplementFactsModel.Receipt">
               <MappingFragment StoreEntitySet="Receipt">
+                <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="createDate" ColumnName="createDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
