@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SupplementFactsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Agents" FromRole="Agents" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="importPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="salePrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="stock" Type="Int32" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Goods" FromRole="Goods" ToRole="OrderDetails" />
+    <NavigationProperty Name="ReceiptDetails" Relationship="Self.FK_ReceiptDetails_Goods1" FromRole="Goods" ToRole="ReceiptDetails" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="agentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="paymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK_Order_Agents" FromRole="Order" ToRole="Agents" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="orderID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" />
+    <Property Name="goodsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Goods" Relationship="Self.FK_OrderDetails_Goods" FromRole="OrderDetails" ToRole="Goods" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="ReceiptDetails" Relationship="Self.FK_ReceiptDetails_Receipt1" FromRole="Receipt" ToRole="ReceiptDetails" />
+  </EntityType>
+  <EntityType Name="ReceiptDetail">
+    <Key>
+      <PropertyRef Name="receiptID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="receiptID" Type="Int32" Nullable="false" />
+    <Property Name="goodsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Goods" Relationship="Self.FK_ReceiptDetails_Goods1" FromRole="ReceiptDetails" ToRole="Goods" />
+    <NavigationProperty Name="Receipt" Relationship="Self.FK_ReceiptDetails_Receipt1" FromRole="ReceiptDetails" ToRole="Receipt" />
+  </EntityType>
+  <Association Name="FK_Order_Agents">
+    <End Role="Agents" Type="Self.Agent" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="agentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Goods">
+    <End Role="Goods" Type="SupplementFactsModel.Goods" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiptDetails_Goods1">
+    <End Role="Goods" Type="SupplementFactsModel.Goods" Multiplicity="1" />
+    <End Role="ReceiptDetails" Type="Self.ReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReceiptDetails">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceiptDetails_Receipt1">
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+    <End Role="ReceiptDetails" Type="Self.ReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReceiptDetails">
+        <PropertyRef Name="receiptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SupplementFactsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Goods1" EntityType="SupplementFactsModel.Goods" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+    <EntitySet Name="ReceiptDetails" EntityType="Self.ReceiptDetail" />
+    <AssociationSet Name="FK_Order_Agents" Association="Self.FK_Order_Agents">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Goods" Association="Self.FK_OrderDetails_Goods">
+      <End Role="Goods" EntitySet="Goods1" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiptDetails_Goods1" Association="Self.FK_ReceiptDetails_Goods1">
+      <End Role="Goods" EntitySet="Goods1" />
+      <End Role="ReceiptDetails" EntitySet="ReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceiptDetails_Receipt1" Association="Self.FK_ReceiptDetails_Receipt1">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="ReceiptDetails" EntitySet="ReceiptDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

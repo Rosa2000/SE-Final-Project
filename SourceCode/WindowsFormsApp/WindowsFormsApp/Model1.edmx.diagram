@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d467b01130464e21919bb8a1442d7110" Name="Diagram1">
+        <EntityTypeShape EntityType="SupplementFactsModel.Agent" Width="1.5" PointX="10.125" PointY="3.875" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Goods" Width="1.5" PointX="5.875" PointY="1.375" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Order" Width="1.5" PointX="8.125" PointY="3.875" />
+        <EntityTypeShape EntityType="SupplementFactsModel.OrderDetails" Width="1.5" PointX="8.125" PointY="1.375" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Receipt" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="SupplementFactsModel.ReceiptDetails" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="SupplementFactsModel.FK_Order_Agents" />
+        <AssociationConnector Association="SupplementFactsModel.FK_OrderDetails_Goods" />
+        <AssociationConnector Association="SupplementFactsModel.FK_ReceiptDetails_Goods1" />
+        <AssociationConnector Association="SupplementFactsModel.FK_OrderDetails_Order" />
+        <AssociationConnector Association="SupplementFactsModel.FK_ReceiptDetails_Receipt1" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Delivery" Width="1.5" PointX="5.875" PointY="4.75" />
+        <AssociationConnector Association="SupplementFactsModel.FK_Delivery_Order" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

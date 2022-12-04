@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication.Models.Order>
+@{
+    ViewBag.Title = "Order History";
+}
+
+<h1 style="text-align: center">Order History</h1>
+<p>
+    @Html.ActionLink("Create New Order", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Order ID
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Agent Name
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Payment Method
+        </th>
+        <th>
+            Payment Status
+        </th>
+        <th>
+            Option
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agents.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paymentStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "OrderDetails", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
