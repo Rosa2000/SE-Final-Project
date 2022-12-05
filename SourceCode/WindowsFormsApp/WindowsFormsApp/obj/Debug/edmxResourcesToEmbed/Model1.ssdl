@@ -40,6 +40,7 @@
     <Property Name="total" Type="decimal" Precision="18" Scale="0" />
     <Property Name="paymentMethod" Type="nvarchar" MaxLength="50" />
     <Property Name="paymentStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="orderStatus" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="OrderDetails">
     <Key>

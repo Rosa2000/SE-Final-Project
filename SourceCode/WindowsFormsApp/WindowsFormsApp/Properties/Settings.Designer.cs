@@ -26,7 +26,8 @@ namespace WindowsFormsApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Rosa;Initial Catalog=SupplementFacts;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Rosa;Initial Catalog=SupplementFacts;Integrated Security=True;Multipl" +
+            "eActiveResultSets=True;Application Name=EntityFramework")]
         public string SupplementFactsConnectionString {
             get {
                 return ((string)(this["SupplementFactsConnectionString"]));

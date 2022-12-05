@@ -4,74 +4,75 @@
     <EntitySetMapping Name="Agents">
       <EntityTypeMapping TypeName="SupplementFactsModel.Agent">
         <MappingFragment StoreEntitySet="Agents">
-          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Goods1">
-      <EntityTypeMapping TypeName="SupplementFactsModel.Goods">
-        <MappingFragment StoreEntitySet="Goods">
-          <ScalarProperty Name="stock" ColumnName="stock" />
-          <ScalarProperty Name="salePrice" ColumnName="salePrice" />
-          <ScalarProperty Name="importPrice" ColumnName="importPrice" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="SupplementFactsModel.Order">
-        <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="discount" ColumnName="discount" />
-          <ScalarProperty Name="createDate" ColumnName="createDate" />
-          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
-          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="agentID" ColumnName="agentID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails1">
-      <EntityTypeMapping TypeName="SupplementFactsModel.OrderDetails">
-        <MappingFragment StoreEntitySet="OrderDetails">
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
-          <ScalarProperty Name="orderID" ColumnName="orderID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Receipts">
-      <EntityTypeMapping TypeName="SupplementFactsModel.Receipt">
-        <MappingFragment StoreEntitySet="Receipt">
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="createDate" ColumnName="createDate" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ReceiptDetails1">
-      <EntityTypeMapping TypeName="SupplementFactsModel.ReceiptDetails">
-        <MappingFragment StoreEntitySet="ReceiptDetails">
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
-          <ScalarProperty Name="receiptID" ColumnName="receiptID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Deliveries">
       <EntityTypeMapping TypeName="SupplementFactsModel.Delivery">
         <MappingFragment StoreEntitySet="Delivery">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="orderID" ColumnName="orderID" />
-          <ScalarProperty Name="createDate" ColumnName="createDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Goods1">
+      <EntityTypeMapping TypeName="SupplementFactsModel.Goods">
+        <MappingFragment StoreEntitySet="Goods">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="importPrice" ColumnName="importPrice" />
+          <ScalarProperty Name="salePrice" ColumnName="salePrice" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SupplementFactsModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails1">
+      <EntityTypeMapping TypeName="SupplementFactsModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receipts">
+      <EntityTypeMapping TypeName="SupplementFactsModel.Receipt">
+        <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReceiptDetails1">
+      <EntityTypeMapping TypeName="SupplementFactsModel.ReceiptDetails">
+        <MappingFragment StoreEntitySet="ReceiptDetails">
+          <ScalarProperty Name="receiptID" ColumnName="receiptID" />
+          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total" ColumnName="total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

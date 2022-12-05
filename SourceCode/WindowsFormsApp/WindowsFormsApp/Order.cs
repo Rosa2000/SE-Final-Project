@@ -17,22 +17,23 @@ namespace WindowsFormsApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderDetails = new HashSet<OrderDetails>();
             this.Deliveries = new HashSet<Delivery>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
         public int ID { get; set; }
+        public Nullable<System.DateTime> createDate { get; set; }
         public string agentID { get; set; }
+        public Nullable<int> discount { get; set; }
         public Nullable<decimal> total { get; set; }
         public string paymentMethod { get; set; }
         public string paymentStatus { get; set; }
-        public Nullable<System.DateTime> createDate { get; set; }
-        public Nullable<int> discount { get; set; }
+        public string orderStatus { get; set; }
     
         public virtual Agent Agent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Delivery> Deliveries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

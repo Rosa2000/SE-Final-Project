@@ -22,8 +22,8 @@ namespace WindowsFormsApp
     
         public string ID { get; set; }
         public string name { get; set; }
-        public string address { get; set; }
         public string phone { get; set; }
+        public string address { get; set; }
         public Nullable<int> discount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
