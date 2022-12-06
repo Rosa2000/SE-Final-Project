@@ -64,15 +64,7 @@ namespace WindowsFormsApp
                 button1.Enabled = false;
             }
 
-            //List<string> dgvCmb = new List<string>();
-            ////dgvCmb.HeaderText = "Name";
-            //dgvCmb.Add("Ghanashyam");
-            //dgvCmb.Add("Jignesh");
-            //dgvCmb.Add("Ishver");
-            //dgvCmb.Add("Anand");
-            ////dgvCmb.Name = "cmbName";
-            ////dataGridView3.Columns["paymentStatus"].data;
-            //paymentStatusDataGridViewComboBoxColumn.DataSource = dgvCmb;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,6 +80,8 @@ namespace WindowsFormsApp
             GoodsDataGridView();
             OrderDataGridView();
             ExportDataGridView();
+            BestSellersDataGridView();
+
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -283,11 +277,11 @@ namespace WindowsFormsApp
         {
             dataGridView3.DataSource = context.Orders.ToList<Order>();
         }
-        
+
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            if( index != -1)
+            if (index != -1)
             {
                 var row = dataGridView3.Rows[index];
                 int id = Convert.ToInt32(row.Cells[0].Value.ToString());
@@ -408,7 +402,7 @@ namespace WindowsFormsApp
             {
                 list.Add(item);
             }
-            var itemList = list.Select(f => new { f.goodsID, f.quantity, f.total}).ToList();
+            var itemList = list.Select(f => new { f.goodsID, f.quantity, f.total }).ToList();
 
 
             //Create a text element and draw it to PDF page.
@@ -554,24 +548,89 @@ namespace WindowsFormsApp
             dataGridView7.DataSource = orderList.ToList();
         }
 
+        void BestSellersDataGridView()
+        {
+            //load best seller datagrid view
+            var bestSellerQuery = context.Goods
+               .Select(x => new { x.ID, x.name, x.importPrice, x.salePrice });
+            dataGridView8.DataSource = bestSellerQuery.ToList();
+
+            //add sold collumn to datagrid view    
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value == null)
+                    {
+                        cell.Value = 0;
+                    }
+                }
+            }
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             var month = dateTimePicker1.Value.Month;
             var year = dateTimePicker1.Value.Year;
-            Console.WriteLine(string.Format("{0} + {1}", month, year));
+            long exTotal = 0;
+            long imTotal = 0;
 
+            BestSellersDataGridView();
+
+            //Import by month
+            var importByMonth = context.Receipts
+                .Where(x => x.createDate.Value.Month == month && x.createDate.Value.Year == year)
+                .ToList();
+            dataGridView6.DataSource = importByMonth;
+
+            foreach (var item in importByMonth)
+            {
+                imTotal += (long)item.total;
+            }
+            label12.Text = "Total: " + imTotal.ToString();
+
+            //Export by month
             var exportByMonth = context.Orders
                 .Where(x => x.createDate.Value.Month == month && x.createDate.Value.Year == year)
                 .ToList();
             dataGridView7.DataSource = exportByMonth;
 
-            var importByMonth = context.Receipts
-                .Where(x => x.createDate.Value.Month == month && x.createDate.Value.Year == year)
-                .ToList();
-            dataGridView6.DataSource = importByMonth;
+            foreach (var item in exportByMonth)
+            {
+                exTotal += (long)item.total;
+            }
+            label15.Text = "Total: " + exTotal.ToString();
+
+            //Best sellers
+            foreach (var item in exportByMonth)
+            {
+                int orderID = item.ID;
+                var orderDetailQuery = context.OrderDetails
+                    .Where(x => x.orderID == orderID)
+                    .Select(x => new { x.goodsID, x.quantity }).ToList();
+
+                foreach (var detail in orderDetailQuery)
+                {
+                    string goodsID = detail.goodsID;
+                    int quantity = (int)detail.quantity;
+                    int rowIndex = 0;
+
+                    foreach (DataGridViewRow row in dataGridView8.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value.ToString() == goodsID)
+                            {
+                                rowIndex = row.Index;
+                                int old = (int)dataGridView8.Rows[rowIndex].Cells[4].Value;
+                                Console.WriteLine(old);
+                                dataGridView8.Rows[rowIndex].Cells[4].Value = old + quantity;
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
         }
-        #endregion
-
-
     }
 }

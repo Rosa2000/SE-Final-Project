@@ -30,7 +30,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj": {
+                "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -78,6 +82,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj": {
+      "restore": {
+        "projectUniqueName": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj",
+        "projectName": "WindowsFormsApp",
+        "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
       }
     }
   }

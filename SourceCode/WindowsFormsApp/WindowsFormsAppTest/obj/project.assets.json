@@ -1788,6 +1788,15 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "WindowsFormsApp/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WindowsFormsApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WindowsFormsApp.dll": {}
+        }
       }
     }
   },
@@ -6325,6 +6334,11 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "WindowsFormsApp/1.0.0": {
+      "type": "project",
+      "path": "../WindowsFormsApp/WindowsFormsApp.csproj",
+      "msbuildProject": "../WindowsFormsApp/WindowsFormsApp.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6332,6 +6346,7 @@
       "MSTest.TestAdapter >= 2.2.8",
       "MSTest.TestFramework >= 2.2.8",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
+      "WindowsFormsApp >= 1.0.0",
       "coverlet.collector >= 3.1.2"
     ]
   },
@@ -6365,7 +6380,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj": {
+              "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
