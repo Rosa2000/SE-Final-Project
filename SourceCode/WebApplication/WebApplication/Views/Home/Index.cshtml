@@ -38,87 +38,75 @@
                 grandTotal = grandTotal + parseFloat($(this).html());
             });
             $("[id*=grandTotal]").html(grandTotal.toString());
-
-            //Display discount after select AgentID
-            //$("id*= dropdown").change(function () {
-            //    var displayDiscount = $(this).text();
-            //    console.log(displayDiscount);
-            //    $("id*=finalTotal").val(displayDiscount);
-            //});
-        });
+})
     </script>
 </head>
 <body>
-        <h2 style="text-align:center">Agents place order here</h2>
-        @using (Html.BeginForm("FormSubbmit", "Home", FormMethod.Post))
-        {
-            <div style="text-align:center">
-                <h3>Select Agent ID</h3>
-                @Html.DropDownList("AgentID", (IEnumerable<SelectListItem>)ViewBag.agentIDList,
-                                    new { style = "width: 400px; font-size: larger", @onChange = "SelectedValue(this)", id = "dropdown" })
-                <h3>Select Payment Method</h3>
-                Cash:   @Html.RadioButton("paymentMethod", "Cash", true)
-                Banking: @Html.RadioButton("paymentMethod", "Banking")
-                Momo: @Html.RadioButton("paymentMethod", "Momo")
-            </div>
-            <br />
-            <h3>Goods list</h3>
-            <table id="tblGoods" class="table">
+    <h2 style="text-align:center">Agents place order here</h2>
+    @using (Html.BeginForm("FormSubbmit", "Home", FormMethod.Post))
+    {
+        <div style="text-align:center">
+            <h3>Select Agent ID</h3>
+            @Html.DropDownList("AgentID", (IEnumerable<SelectListItem>)ViewBag.agentIDList,
+                                new { style = "width: 400px; font-size: larger", @onChange = "SelectedValue(this)", id = "dropdown" })
+            <h3>Select Payment Method</h3>
+            Cash:   @Html.RadioButton("paymentMethod", "Cash", true)
+            Banking: @Html.RadioButton("paymentMethod", "Banking")
+            Momo: @Html.RadioButton("paymentMethod", "Momo")
+        </div>
+        <br />
+        <h3>Goods list</h3>
+        <table id="tblGoods" class="table">
+            <tr>
+                <th>
+                    <p>Goods ID</p>
+                </th>
+                <th>
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p>Price</p>
+                </th>
+                <th>
+                    <p>Stock</p>
+                </th>
+                <th>
+                    <p>Quantity</p>
+                </th>
+                <th>
+                    <p>Total</p>
+                </th>
+                <th></th>
+            </tr>
+            @foreach (Goods g in Model.goodsList)
+            {
                 <tr>
-                    <th>
-                        <p>Indentify Code</p>
-                    </th>
-                    <th>
-                        <p>Name</p>
-                    </th>
-                    <th>
-                        <p>Price</p>
-                    </th>
-                    <th>
-                        <p>Stock</p>
-                    </th>
-                    <th>
-                        <p>Quantity</p>
-                    </th>
-                    <th>
-                        <p>Total</p>
-                    </th>
-                    <th></th>
+                    <td name="goodsIndentifyCode">
+                        @g.ID
+                    </td>
+                    <td name="goodsName">
+                        @g.name
+                    </td>
+                    <td class="salePrice" id="salePrice" name="goodsSalePrice">
+                        @g.salePrice
+                    </td>
+                    <td name="goodsStock">
+                        @g.stock
+                    </td>
+                    <td>
+                        <input type="text" id="quantity" name="goodsQuantity" value="0" />
+                    </td>
+                    <td id="total" name="" style="text-align:end;">
+                        0
+                    </td>
                 </tr>
-                @foreach (Goods g in Model.goodsList)
-                {
-                    <tr>
-                        <td name="goodsIndentifyCode">
-                            @g.ID
-                        </td>
-                        <td name="goodsName">
-                            @g.name
-                        </td>
-                        <td class="salePrice" id="salePrice" name="goodsSalePrice">
-                            @g.salePrice
-                        </td>
-                        <td name="goodsStock">
-                            @g.stock
-                        </td>
-                        <td>
-                            <input type="text" id="quantity" name="goodsQuantity" value="0" />
-                        </td>
-                        <td id="total" name="" style="text-align:end;">
-                            0
-                        </td>
-                    </tr>
-                }
-            </table>
-
-
-
-
-            <h3>Grand Total: <span id="grandTotal">0</span></h3>
-            @*<h3>Discount: <span id="discount">0</span></h3>
-            <h3>Final Total: <span id="finalTotal" name="finaltotal">0</span></h3>*@
-            <input class=" btn-primary" type="submit" value="Subbmit" />
             }
+        </table>
 
-    </body>
+        <h2>Total: <span id="grandTotal">0</span></h2>
+        <input class=" btn-primary" type="submit" value="Subbmit" />
+    }
+
+</body>
 </html>
 

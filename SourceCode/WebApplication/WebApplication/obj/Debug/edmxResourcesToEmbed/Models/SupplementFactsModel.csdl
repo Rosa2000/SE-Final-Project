@@ -32,6 +32,16 @@
       <End Role="Receipt" EntitySet="Receipts" />
       <End Role="ReceiptDetail" EntitySet="ReceiptDetails1" />
     </AssociationSet>
+    <EntitySet Name="CustomerOrderDetails" EntityType="SupplementFactsModel.CustomerOrderDetail" />
+    <AssociationSet Name="FK_CustomerOrderDetails_Goods" Association="SupplementFactsModel.FK_CustomerOrderDetails_Goods">
+      <End Role="Goods" EntitySet="Goods1" />
+      <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetails" />
+    </AssociationSet>
+    <EntitySet Name="CustomerOrders" EntityType="SupplementFactsModel.CustomerOrder" />
+    <AssociationSet Name="FK_CustomerOrderDetails_CustomerOrder" Association="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder">
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+      <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Agents">
     <Key>
@@ -65,6 +75,7 @@
     <Property Name="stock" Type="Int32" />
     <NavigationProperty Name="OrderDetails" Relationship="SupplementFactsModel.FK_OrderDetails_Goods" FromRole="Good" ToRole="OrderDetail" />
     <NavigationProperty Name="ReceiptDetails" Relationship="SupplementFactsModel.FK_ReceiptDetails_Goods1" FromRole="Good" ToRole="ReceiptDetail" />
+    <NavigationProperty Name="CustomerOrderDetails" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_Goods" FromRole="Goods" ToRole="CustomerOrderDetail" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -80,6 +91,7 @@
     <NavigationProperty Name="Deliveries" Relationship="SupplementFactsModel.FK_Delivery_Order" FromRole="Order" ToRole="Delivery" />
     <NavigationProperty Name="OrderDetails" Relationship="SupplementFactsModel.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetail" />
     <Property Name="discount" Type="Int32" />
+    <Property Name="orderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="OrderDetails">
     <Key>
@@ -183,6 +195,55 @@
       </Principal>
       <Dependent Role="ReceiptDetail">
         <PropertyRef Name="receiptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CustomerOrderDetail">
+    <Key>
+      <PropertyRef Name="customerOrderID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="customerOrderID" Type="Int32" Nullable="false" />
+    <Property Name="goodsID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Goods" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_Goods" FromRole="CustomerOrderDetail" ToRole="Goods" />
+    <NavigationProperty Name="CustomerOrder" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrderDetail" ToRole="CustomerOrder" />
+  </EntityType>
+  <Association Name="FK_CustomerOrderDetails_Goods">
+    <End Type="SupplementFactsModel.Goods" Role="Goods" Multiplicity="1" />
+    <End Type="SupplementFactsModel.CustomerOrderDetail" Role="CustomerOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetail">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CustomerOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerOrderDetails" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrder" ToRole="CustomerOrderDetail" />
+  </EntityType>
+  <Association Name="FK_CustomerOrderDetails_CustomerOrder">
+    <End Type="SupplementFactsModel.CustomerOrder" Role="CustomerOrder" Multiplicity="1" />
+    <End Type="SupplementFactsModel.CustomerOrderDetail" Role="CustomerOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetail">
+        <PropertyRef Name="customerOrderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

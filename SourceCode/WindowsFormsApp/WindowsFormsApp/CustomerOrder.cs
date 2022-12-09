@@ -7,33 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication.Models
+namespace WindowsFormsApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class CustomerOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
+        public CustomerOrder()
         {
-            this.Deliveries = new HashSet<Delivery>();
-            this.OrderDetails = new HashSet<OrderDetails>();
+            this.CustomerOrderDetails = new HashSet<CustomerOrderDetail>();
         }
     
         public int ID { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
-        public string agentID { get; set; }
         public Nullable<decimal> total { get; set; }
-        public string paymentMethod { get; set; }
-        public string paymentStatus { get; set; }
-        public Nullable<int> discount { get; set; }
-        public string orderStatus { get; set; }
+        public string customerName { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
+        public string email { get; set; }
     
-        public virtual Agents Agents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Delivery> Deliveries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<CustomerOrderDetail> CustomerOrderDetails { get; set; }
     }
 }

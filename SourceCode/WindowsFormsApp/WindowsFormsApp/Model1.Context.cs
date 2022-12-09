@@ -32,5 +32,7 @@ namespace WindowsFormsApp
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<ReceiptDetails> ReceiptDetails { get; set; }
+        public virtual DbSet<CustomerOrder> CustomerOrders { get; set; }
+        public virtual DbSet<CustomerOrderDetail> CustomerOrderDetails { get; set; }
     }
 }

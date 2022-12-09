@@ -10,6 +10,28 @@
     <Property Name="address" Type="nvarchar(max)" />
     <Property Name="discount" Type="int" />
   </EntityType>
+  <EntityType Name="CustomerOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="customerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CustomerOrderDetails">
+    <Key>
+      <PropertyRef Name="customerOrderID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="customerOrderID" Type="int" Nullable="false" />
+    <Property Name="goodsID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
   <EntityType Name="Delivery">
     <Key>
       <PropertyRef Name="ID" />
@@ -70,6 +92,30 @@
     <Property Name="quantity" Type="int" />
     <Property Name="total" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
+  <Association Name="FK_CustomerOrderDetails_CustomerOrder">
+    <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="1" />
+    <End Role="CustomerOrderDetails" Type="Self.CustomerOrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetails">
+        <PropertyRef Name="customerOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrderDetails_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="CustomerOrderDetails" Type="Self.CustomerOrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetails">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Delivery_Order">
     <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
     <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
@@ -144,12 +190,22 @@
   </Association>
   <EntityContainer Name="SupplementFactsModelStoreContainer">
     <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerOrderDetails" EntityType="Self.CustomerOrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ReceiptDetails" EntityType="Self.ReceiptDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CustomerOrderDetails_CustomerOrder" Association="Self.FK_CustomerOrderDetails_CustomerOrder">
+      <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+      <End Role="CustomerOrderDetails" EntitySet="CustomerOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrderDetails_Goods" Association="Self.FK_CustomerOrderDetails_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="CustomerOrderDetails" EntitySet="CustomerOrderDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_Delivery_Order" Association="Self.FK_Delivery_Order">
       <End Role="Order" EntitySet="Order" />
       <End Role="Delivery" EntitySet="Delivery" />

@@ -144,12 +144,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Agents.cs">
+      <DependentUpon>SupplementFactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerOrder.cs">
+      <DependentUpon>SupplementFactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerOrderDetail.cs">
       <DependentUpon>SupplementFactsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Delivery.cs">
@@ -239,14 +244,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Agent\Index.cshtml" />
-    <Content Include="Views\Application\Create.cshtml" />
-    <Content Include="Views\Application\Delete.cshtml" />
-    <Content Include="Views\Application\Details.cshtml" />
-    <Content Include="Views\Application\Edit.cshtml" />
     <Content Include="Views\Home\OrderComplete.cshtml" />
     <Content Include="Views\Home\OrderHistory.cshtml" />
     <Content Include="Views\Home\OrderDetails.cshtml" />

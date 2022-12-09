@@ -18,6 +18,10 @@
         <AssociationConnector Association="SupplementFactsModel.FK_ReceiptDetails_Goods1" ManuallyRouted="false" />
         <AssociationConnector Association="SupplementFactsModel.FK_OrderDetails_Order" ManuallyRouted="false" />
         <AssociationConnector Association="SupplementFactsModel.FK_ReceiptDetails_Receipt1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrder" Width="1.5" PointX="6.25" PointY="8.75" />
+        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrderDetail" Width="1.5" PointX="6.25" PointY="5.875" />
+        <AssociationConnector Association="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" />
+        <AssociationConnector Association="SupplementFactsModel.FK_CustomerOrderDetails_Goods" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult OrderHistory() 
         {
-            return View(db.Orders.ToList());
+            return View(db.Orders.OrderByDescending(x => x.ID).ToList());
         }
 
         public ActionResult OrderDetails(int id)
@@ -91,7 +91,8 @@ namespace WebApplication.Controllers
                 discount = (int)discount,
                 total = afterDiscount,
                 paymentMethod = paymentMethod ,
-                paymentStatus = "Unpaid"
+                paymentStatus = "Unpaid",
+                orderStatus = "New"
             });
             db.SaveChanges();
 
@@ -103,7 +104,7 @@ namespace WebApplication.Controllers
                 int quantity = quantityList[i];
                 int stock = (int)goods[i].stock;
                 decimal salePrice = (decimal)goods[i].salePrice;
-                total = (((decimal)quantity * salePrice * discount) / 100);
+                total = (decimal)quantity * salePrice;
 
                 if (quantity != 0)
                 {
@@ -121,11 +122,8 @@ namespace WebApplication.Controllers
                     db.SaveChanges();
                 }
             }
-
             return RedirectToAction("OrderComplete");
         }
-
-
 
         public List<Goods> GetGoods()
         {
@@ -162,7 +160,6 @@ namespace WebApplication.Controllers
             List<Delivery> deliveries = db.Deliveries.ToList();
             return deliveries;
         }
-
 
         public List<ReceiptDetails> GetReceiptDetails()
         {
