@@ -26,13 +26,13 @@ namespace WindowsFormsApp
         }
     
         public virtual DbSet<Agent> Agents { get; set; }
+        public virtual DbSet<CustomerOrder> CustomerOrders { get; set; }
+        public virtual DbSet<CustomerOrderDetails> CustomerOrderDetails { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<Goods> Goods { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<ReceiptDetails> ReceiptDetails { get; set; }
-        public virtual DbSet<CustomerOrder> CustomerOrders { get; set; }
-        public virtual DbSet<CustomerOrderDetail> CustomerOrderDetails { get; set; }
     }
 }

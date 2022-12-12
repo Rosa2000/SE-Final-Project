@@ -60,14 +60,17 @@ namespace WindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'supplementFactsDataSet.CustomerOrder' table. You can move, or remove it, as needed.
+            this.customerOrderTableAdapter.Fill(this.supplementFactsDataSet.CustomerOrder);
+            // TODO: This line of code loads data into the 'supplementFactsDataSet.Goods' table. You can move, or remove it, as needed.
+            this.goodsTableAdapter.Fill(this.supplementFactsDataSet.Goods);
             // TODO: This line of code loads data into the 'supplementFactsDataSet.Receipt' table. You can move, or remove it, as needed.
             this.receiptTableAdapter.Fill(this.supplementFactsDataSet.Receipt);
             // TODO: This line of code loads data into the 'supplementFactsDataSet.Delivery' table. You can move, or remove it, as needed.
             this.deliveryTableAdapter.Fill(this.supplementFactsDataSet.Delivery);
-            // TODO: This line of code loads data into the 'supplementFactsDataSet.Goods' table. You can move, or remove it, as needed.
-            this.goodsTableAdapter.Fill(this.supplementFactsDataSet.Goods);
-            // TODO: This line of code loads data into the 'supplementFactsDataSet2.Order' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'supplementFactsDataSet.Order' table. You can move, or remove it, as needed.
             this.orderTableAdapter.Fill(this.supplementFactsDataSet.Order);
+
             GoodsDataGridView();
             OrderDataGridView();
             ImportDataGridView();
@@ -228,7 +231,7 @@ namespace WindowsFormsApp
             e.Handled = true;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             button4.Enabled = true;
         }
@@ -287,7 +290,7 @@ namespace WindowsFormsApp
                 else
                 {
                     button6.Enabled = false;
-                }               
+                }
             }
         }
 
@@ -355,6 +358,9 @@ namespace WindowsFormsApp
                     page.Graphics.ClientSize.Width / 2, 200)
                 );
 
+
+            PdfImage img = new PdfBitmap("../../Logo.png");
+            graphics.DrawImage(img, new RectangleF(graphics.ClientSize.Width - 200, result.Bounds.Y - 30, 130, 130));
             PdfFont subHeadingFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
             graphics.DrawRectangle
                 (
@@ -445,11 +451,11 @@ namespace WindowsFormsApp
                             "Quantity",
                             "Total"
                             };
-            for (int i = 0; i < header.Cells.Count; i++) 
+            for (int i = 0; i < header.Cells.Count; i++)
             {
                 grid.Headers[0].Cells[i].Value = headers[i];
             }
-            
+
             //PdfGridRow header = List<headers>;
             for (int i = 0; i < header.Cells.Count; i++)
             {
@@ -599,7 +605,7 @@ namespace WindowsFormsApp
         #endregion
 
         #region stat tab
-        
+
         void ImportDataGridView()
         {
             long total = 0;
@@ -618,7 +624,7 @@ namespace WindowsFormsApp
             long total = 0;
             var orderList = context.Orders
                 .Select(x => new { x.ID, x.createDate, x.agentID, x.discount, x.total });
-            foreach( var order in orderList ) 
+            foreach (var order in orderList)
             {
                 total += (long)order.total;
             }
@@ -705,7 +711,7 @@ namespace WindowsFormsApp
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                        cell.Value = 0;
+                    cell.Value = 0;
                 }
             }
 
@@ -746,5 +752,11 @@ namespace WindowsFormsApp
             BestSellersDataGridView();
         }
         #endregion
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+
+        }
     }
 }

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Cart</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+	
+</head>
+<body>
+	<th:block th:include="/_header"></th:block>
+	<h1>Shopping Cart</h1>
+	
+	<table class="center">
+		<tr>
+			<th>Image</th>
+			<th>Goods Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Total</th>
+		</tr>
+	
+		<tr th:each ="c : ${cartItems}">
+			<td><img src="../static/Logo.png" width="100" th:src="@{Logo.png}"/></td>
+			<td th:utext="${c.name}"></td>
+			<td><span th:utext="${#numbers.formatDecimal(c.salePrice, 0, 'COMMA', 0, 'POINT')}"></span> VND</td>
+			<td style="text-align:center" th:utext="${c.quantity}"></td>
+			<td><span style="text-align:center" th:utext="${#numbers.formatDecimal(c.total, 0, 'COMMA', 0, 'POINT')}"></span> VND</td>
+			<td>
+				<a th:href= "@{|remove/${c.ID}|}">Remove</a> 
+			</td>
+		</tr>
+	</table>
+	</br>
+	<h2>Total: <span th:utext="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')}"></span> VND</h2>
+	<a th:href= "@{|/|}" style="font-size: larger">Continue Shopping</a> 
+	<a th:href= "@{|checkout|}" style="font-size: larger; padding-left:40px">Check Out</a> 
+	</br></br></br>
+	<th:block th:include="/_footer"></th:block>
+	
+</body>
+</html>

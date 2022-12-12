@@ -17,9 +17,9 @@ namespace WindowsFormsApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Goods()
         {
+            this.CustomerOrderDetails = new HashSet<CustomerOrderDetails>();
             this.OrderDetails = new HashSet<OrderDetails>();
             this.ReceiptDetails = new HashSet<ReceiptDetails>();
-            this.CustomerOrderDetails = new HashSet<CustomerOrderDetail>();
         }
     
         public string ID { get; set; }
@@ -29,10 +29,10 @@ namespace WindowsFormsApp
         public Nullable<int> stock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerOrderDetails> CustomerOrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReceiptDetails> ReceiptDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerOrderDetail> CustomerOrderDetails { get; set; }
     }
 }

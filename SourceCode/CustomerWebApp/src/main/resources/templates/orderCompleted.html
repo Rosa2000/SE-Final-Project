@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Order Completed</title>
+	
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+	
+</head>
+<body>
+	<th:block th:include="/_header"></th:block>
+	<h1>Order Completed</h1><br>
+	<h2>Thank you for Order</h2>
+	<h2>An email has been sent to you</h2>
+	<a th:href= "@{|/|}" style="font-size: larger">Back to Home</a>
+	<br><br><br>
+	<th:block th:include="/_footer"></th:block>
+	
+</body>
+</html>

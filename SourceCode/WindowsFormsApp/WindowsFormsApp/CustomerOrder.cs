@@ -17,7 +17,7 @@ namespace WindowsFormsApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CustomerOrder()
         {
-            this.CustomerOrderDetails = new HashSet<CustomerOrderDetail>();
+            this.CustomerOrderDetails = new HashSet<CustomerOrderDetails>();
         }
     
         public int ID { get; set; }
@@ -29,6 +29,6 @@ namespace WindowsFormsApp
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerOrderDetail> CustomerOrderDetails { get; set; }
+        public virtual ICollection<CustomerOrderDetails> CustomerOrderDetails { get; set; }
     }
 }

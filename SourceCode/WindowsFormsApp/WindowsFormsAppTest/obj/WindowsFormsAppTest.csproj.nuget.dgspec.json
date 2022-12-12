@@ -31,8 +31,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj": {
-                "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj"
+              "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp1.csproj": {
+                "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp1.csproj"
               }
             }
           }
@@ -84,11 +84,11 @@
         }
       }
     },
-    "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj": {
+    "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp1.csproj": {
       "restore": {
-        "projectUniqueName": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj",
-        "projectName": "WindowsFormsApp",
-        "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp.csproj",
+        "projectUniqueName": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp1.csproj",
+        "projectName": "WindowsFormsApp1",
+        "projectPath": "F:\\TRYHARD\\HK1 - 20222023\\CNPM\\SE-Final-Project\\SourceCode\\WindowsFormsApp\\WindowsFormsApp\\WindowsFormsApp1.csproj",
         "frameworks": {
           "net48": {
             "projectReferences": {}

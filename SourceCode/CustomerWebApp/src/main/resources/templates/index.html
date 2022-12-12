@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Goods List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+	
+</head>
+<body>
+	<th:block th:include="/_header"></th:block>
+	<h1>Customer place order here</h1>
+	<table class="center">
+		<tr>
+			<th>Image</th>
+			<th>Goods Name</th>
+			<th>Price</th>
+		<tr th:each ="g : ${Goods}">
+			<td><img src="../static/Logo.png" width="100" th:src="@{Logo.png}"/></td>
+			<td th:utext="${g.name}"></td>
+			<td><span th:utext="${#numbers.formatDecimal(g.salePrice, 0, 'COMMA', 0, 'POINT')}"></span> VND</td>
+			<td>
+				<a th:href= "@{|add/${g.ID}|}">Add to cart</a> 
+			</td>
+			
+		</tr>
+	</table>
+	<th:block th:include="/_footer"></th:block>
+</body>
+</html>

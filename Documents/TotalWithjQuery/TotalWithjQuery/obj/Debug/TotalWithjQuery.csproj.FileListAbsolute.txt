@@ -1,6 +1,0 @@
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\bin\TotalWithjQuery.dll.config
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\bin\TotalWithjQuery.dll
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\bin\TotalWithjQuery.pdb
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\obj\Debug\TotalWithjQuery.csprojResolveAssemblyReference.cache
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\obj\Debug\TotalWithjQuery.dll
-C:\Users\Training\Documents\Training Projects\TotalWithjQuery\TotalWithjQuery\obj\Debug\TotalWithjQuery.pdb

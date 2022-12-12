@@ -14,7 +14,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="createDate" Type="datetime" />
     <Property Name="total" Type="decimal" Precision="18" Scale="0" />
     <Property Name="customerName" Type="nvarchar" MaxLength="50" />

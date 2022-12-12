@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SupplementFactsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SupplementFactsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agents">
           <Key>
             <PropertyRef Name="ID" />
@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="createDate" Type="datetime" />
           <Property Name="total" Type="decimal" Precision="18" Scale="0" />
           <Property Name="customerName" Type="nvarchar" MaxLength="50" />
@@ -236,7 +236,8 @@
             <End Role="ReceiptDetails" EntitySet="ReceiptDetails" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SupplementFactsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -250,6 +251,31 @@
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="discount" Type="Int32" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Agents" FromRole="Agents" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CustomerOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerOrderDetails" Relationship="Self.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrder" ToRole="CustomerOrderDetails" />
+        </EntityType>
+        <EntityType Name="CustomerOrderDetails">
+          <Key>
+            <PropertyRef Name="customerOrderID" />
+            <PropertyRef Name="goodsID" />
+          </Key>
+          <Property Name="customerOrderID" Type="Int32" Nullable="false" />
+          <Property Name="goodsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="CustomerOrder" Relationship="Self.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrderDetails" ToRole="CustomerOrder" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_CustomerOrderDetails_Goods" FromRole="CustomerOrderDetails" ToRole="Goods" />
         </EntityType>
         <EntityType Name="Delivery">
           <Key>
@@ -270,9 +296,9 @@
           <Property Name="importPrice" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="salePrice" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="stock" Type="Int32" />
+          <NavigationProperty Name="CustomerOrderDetails" Relationship="Self.FK_CustomerOrderDetails_Goods" FromRole="Goods" ToRole="CustomerOrderDetails" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Goods" FromRole="Goods" ToRole="OrderDetails" />
           <NavigationProperty Name="ReceiptDetails" Relationship="Self.FK_ReceiptDetails_Goods1" FromRole="Goods" ToRole="ReceiptDetails" />
-          <NavigationProperty Name="CustomerOrderDetails" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_Goods" FromRole="Goods" ToRole="CustomerOrderDetail" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -332,6 +358,30 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="agentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerOrderDetails_CustomerOrder">
+          <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="1" />
+          <End Role="CustomerOrderDetails" Type="SupplementFactsModel.CustomerOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerOrderDetails">
+              <PropertyRef Name="customerOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerOrderDetails_Goods">
+          <End Role="Goods" Type="SupplementFactsModel.Goods" Multiplicity="1" />
+          <End Role="CustomerOrderDetails" Type="SupplementFactsModel.CustomerOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerOrderDetails">
+              <PropertyRef Name="goodsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,6 +447,8 @@
         </Association>
         <EntityContainer Name="SupplementFactsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="CustomerOrders" EntityType="Self.CustomerOrder" />
+          <EntitySet Name="CustomerOrderDetails1" EntityType="SupplementFactsModel.CustomerOrderDetails" />
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
           <EntitySet Name="Goods1" EntityType="SupplementFactsModel.Goods" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -406,6 +458,14 @@
           <AssociationSet Name="FK_Order_Agents" Association="Self.FK_Order_Agents">
             <End Role="Agents" EntitySet="Agents" />
             <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerOrderDetails_CustomerOrder" Association="Self.FK_CustomerOrderDetails_CustomerOrder">
+            <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+            <End Role="CustomerOrderDetails" EntitySet="CustomerOrderDetails1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerOrderDetails_Goods" Association="Self.FK_CustomerOrderDetails_Goods">
+            <End Role="Goods" EntitySet="Goods1" />
+            <End Role="CustomerOrderDetails" EntitySet="CustomerOrderDetails1" />
           </AssociationSet>
           <AssociationSet Name="FK_Delivery_Order" Association="Self.FK_Delivery_Order">
             <End Role="Order" EntitySet="Orders" />
@@ -427,66 +487,7 @@
             <End Role="Receipt" EntitySet="Receipts" />
             <End Role="ReceiptDetails" EntitySet="ReceiptDetails1" />
           </AssociationSet>
-          <EntitySet Name="CustomerOrders" EntityType="SupplementFactsModel.CustomerOrder" />
-          <EntitySet Name="CustomerOrderDetails" EntityType="SupplementFactsModel.CustomerOrderDetail" />
-          <AssociationSet Name="FK_CustomerOrderDetails_CustomerOrder" Association="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder">
-            <End Role="CustomerOrder" EntitySet="CustomerOrders" />
-            <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerOrderDetails_Goods" Association="SupplementFactsModel.FK_CustomerOrderDetails_Goods">
-            <End Role="Goods" EntitySet="Goods1" />
-            <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetails" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="CustomerOrder">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="createDate" Type="DateTime" Precision="3" />
-          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CustomerOrderDetails" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrder" ToRole="CustomerOrderDetail" />
-        </EntityType>
-        <EntityType Name="CustomerOrderDetail">
-          <Key>
-            <PropertyRef Name="customerOrderID" />
-            <PropertyRef Name="goodsID" />
-          </Key>
-          <Property Name="customerOrderID" Type="Int32" Nullable="false" />
-          <Property Name="goodsID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="quantity" Type="Int32" />
-          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="CustomerOrder" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" FromRole="CustomerOrderDetail" ToRole="CustomerOrder" />
-          <NavigationProperty Name="Goods" Relationship="SupplementFactsModel.FK_CustomerOrderDetails_Goods" FromRole="CustomerOrderDetail" ToRole="Goods" />
-        </EntityType>
-        <Association Name="FK_CustomerOrderDetails_CustomerOrder">
-          <End Type="SupplementFactsModel.CustomerOrder" Role="CustomerOrder" Multiplicity="1" />
-          <End Type="SupplementFactsModel.CustomerOrderDetail" Role="CustomerOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerOrder">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CustomerOrderDetail">
-              <PropertyRef Name="customerOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerOrderDetails_Goods">
-          <End Type="SupplementFactsModel.Goods" Role="Goods" Multiplicity="1" />
-          <End Type="SupplementFactsModel.CustomerOrderDetail" Role="CustomerOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Goods">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CustomerOrderDetail">
-              <PropertyRef Name="goodsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -501,6 +502,29 @@
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="discount" ColumnName="discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerOrders">
+            <EntityTypeMapping TypeName="SupplementFactsModel.CustomerOrder">
+              <MappingFragment StoreEntitySet="CustomerOrder">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerOrderDetails1">
+            <EntityTypeMapping TypeName="SupplementFactsModel.CustomerOrderDetails">
+              <MappingFragment StoreEntitySet="CustomerOrderDetails">
+                <ScalarProperty Name="customerOrderID" ColumnName="customerOrderID" />
+                <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -565,29 +589,6 @@
                 <ScalarProperty Name="goodsID" ColumnName="goodsID" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="total" ColumnName="total" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerOrders">
-            <EntityTypeMapping TypeName="SupplementFactsModel.CustomerOrder">
-              <MappingFragment StoreEntitySet="CustomerOrder">
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="customerName" ColumnName="customerName" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="createDate" ColumnName="createDate" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerOrderDetails">
-            <EntityTypeMapping TypeName="SupplementFactsModel.CustomerOrderDetail">
-              <MappingFragment StoreEntitySet="CustomerOrderDetails">
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="goodsID" ColumnName="goodsID" />
-                <ScalarProperty Name="customerOrderID" ColumnName="customerOrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
