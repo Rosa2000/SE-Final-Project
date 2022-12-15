@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7668cc74f31045b5bcb704a824739440" Name="Diagram1">
-        <EntityTypeShape EntityType="SupplementFactsModel.Agent" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrder" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrderDetails" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.Delivery" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.Goods" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.Order" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.OrderDetails" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.Receipt" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplementFactsModel.ReceiptDetails" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Agent" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrder" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.CustomerOrderDetails" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Delivery" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Goods" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Order" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.OrderDetails" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.Receipt" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupplementFactsModel.ReceiptDetails" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="SupplementFactsModel.FK_Order_Agents" ManuallyRouted="false" />
         <AssociationConnector Association="SupplementFactsModel.FK_CustomerOrderDetails_CustomerOrder" ManuallyRouted="false" />
         <AssociationConnector Association="SupplementFactsModel.FK_CustomerOrderDetails_Goods" ManuallyRouted="false" />

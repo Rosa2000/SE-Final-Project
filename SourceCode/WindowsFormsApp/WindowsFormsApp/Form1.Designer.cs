@@ -33,6 +33,11 @@
             this.goodsListTab = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.indentifyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GoodsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.goodsReceivedTab = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.goodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supplementFactsDataSet = new WindowsFormsApp.SupplementFactsDataSet();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,50 +59,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.deliTab = new System.Windows.Forms.TabPage();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.label7 = new System.Windows.Forms.Label();
-            this.statisticTab = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.dataGridView8 = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.dataGridView7 = new System.Windows.Forms.DataGridView();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label10 = new System.Windows.Forms.Label();
-            this.indentifyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GoodsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplementFactsDataSet = new WindowsFormsApp.SupplementFactsDataSet();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.orderTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.OrderTableAdapter();
-            this.deliveryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.deliveryTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.DeliveryTableAdapter();
-            this.receiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.receiptTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.ReceiptTableAdapter();
-            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createDateDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createDateDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agentIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.goodsTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.GoodsTableAdapter();
-            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.agentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,15 +67,47 @@
             this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.deliTab = new System.Windows.Forms.TabPage();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deliveryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.statisticTab = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sold = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agentIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
             this.customerOrderTab = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.customerOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerOrderTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.CustomerOrderTableAdapter();
             this.iDDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createDateDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,27 +115,32 @@
             this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label17 = new System.Windows.Forms.Label();
+            this.customerOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.OrderTableAdapter();
+            this.deliveryTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.DeliveryTableAdapter();
+            this.receiptTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.ReceiptTableAdapter();
+            this.goodsTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.GoodsTableAdapter();
+            this.customerOrderTableAdapter = new WindowsFormsApp.SupplementFactsDataSetTableAdapters.CustomerOrderTableAdapter();
             this.tabControl1.SuspendLayout();
             this.goodsListTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.goodsReceivedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet)).BeginInit();
             this.goodsOrderTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.deliTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryBindingSource)).BeginInit();
             this.statisticTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).BeginInit();
             this.customerOrderTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerOrderBindingSource)).BeginInit();
@@ -160,6 +160,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1263, 758);
             this.tabControl1.TabIndex = 5;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // goodsListTab
             // 
@@ -206,6 +207,54 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1240, 626);
             this.dataGridView2.TabIndex = 1;
+            // 
+            // indentifyCode
+            // 
+            this.indentifyCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.indentifyCode.DataPropertyName = "ID";
+            this.indentifyCode.HeaderText = "ID";
+            this.indentifyCode.MinimumWidth = 6;
+            this.indentifyCode.Name = "indentifyCode";
+            this.indentifyCode.ReadOnly = true;
+            this.indentifyCode.Width = 56;
+            // 
+            // GoodsName
+            // 
+            this.GoodsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GoodsName.DataPropertyName = "name";
+            this.GoodsName.HeaderText = "Goods Name";
+            this.GoodsName.MinimumWidth = 6;
+            this.GoodsName.Name = "GoodsName";
+            this.GoodsName.ReadOnly = true;
+            // 
+            // importPrice
+            // 
+            this.importPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.importPrice.DataPropertyName = "importPrice";
+            this.importPrice.HeaderText = "Import Price";
+            this.importPrice.MinimumWidth = 6;
+            this.importPrice.Name = "importPrice";
+            this.importPrice.ReadOnly = true;
+            this.importPrice.Width = 120;
+            // 
+            // salePrice
+            // 
+            this.salePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.salePrice.DataPropertyName = "salePrice";
+            this.salePrice.HeaderText = "Sale Price";
+            this.salePrice.MinimumWidth = 6;
+            this.salePrice.Name = "salePrice";
+            this.salePrice.ReadOnly = true;
+            this.salePrice.Width = 102;
+            // 
+            // stock
+            // 
+            this.stock.DataPropertyName = "stock";
+            this.stock.HeaderText = "Stock";
+            this.stock.MinimumWidth = 6;
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            this.stock.Width = 110;
             // 
             // label3
             // 
@@ -341,6 +390,16 @@
             this.comboBox1.ValueMember = "name";
             this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
+            // goodsBindingSource
+            // 
+            this.goodsBindingSource.DataMember = "Goods";
+            this.goodsBindingSource.DataSource = this.supplementFactsDataSet;
+            // 
+            // supplementFactsDataSet
+            // 
+            this.supplementFactsDataSet.DataSetName = "SupplementFactsDataSet";
+            this.supplementFactsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -394,6 +453,7 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "Print";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label6
             // 
@@ -450,6 +510,73 @@
             this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             this.dataGridView3.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_RowLeave);
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "createDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "createDate";
+            this.createDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // agentIDDataGridViewTextBoxColumn
+            // 
+            this.agentIDDataGridViewTextBoxColumn.DataPropertyName = "agentID";
+            this.agentIDDataGridViewTextBoxColumn.HeaderText = "agentID";
+            this.agentIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.agentIDDataGridViewTextBoxColumn.Name = "agentIDDataGridViewTextBoxColumn";
+            this.agentIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // discountDataGridViewTextBoxColumn
+            // 
+            this.discountDataGridViewTextBoxColumn.DataPropertyName = "discount";
+            this.discountDataGridViewTextBoxColumn.HeaderText = "discount";
+            this.discountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
+            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "total";
+            this.totalDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paymentMethodDataGridViewTextBoxColumn
+            // 
+            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "paymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "paymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
+            this.paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paymentStatusDataGridViewTextBoxColumn
+            // 
+            this.paymentStatusDataGridViewTextBoxColumn.DataPropertyName = "paymentStatus";
+            this.paymentStatusDataGridViewTextBoxColumn.HeaderText = "paymentStatus";
+            this.paymentStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.paymentStatusDataGridViewTextBoxColumn.Name = "paymentStatusDataGridViewTextBoxColumn";
+            // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "orderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "orderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataMember = "Order";
+            this.orderBindingSource.DataSource = this.supplementFactsDataSet;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -495,6 +622,42 @@
             this.dataGridView5.Size = new System.Drawing.Size(1240, 626);
             this.dataGridView5.TabIndex = 8;
             this.dataGridView5.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_RowLeave);
+            // 
+            // iDDataGridViewTextBoxColumn1
+            // 
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
+            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // createDateDataGridViewTextBoxColumn1
+            // 
+            this.createDateDataGridViewTextBoxColumn1.DataPropertyName = "createDate";
+            this.createDateDataGridViewTextBoxColumn1.HeaderText = "createDate";
+            this.createDateDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.createDateDataGridViewTextBoxColumn1.Name = "createDateDataGridViewTextBoxColumn1";
+            this.createDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "orderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "orderID";
+            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
+            this.statusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            // 
+            // deliveryBindingSource
+            // 
+            this.deliveryBindingSource.DataMember = "Delivery";
+            this.deliveryBindingSource.DataSource = this.supplementFactsDataSet;
             // 
             // label7
             // 
@@ -564,6 +727,45 @@
             this.dataGridView8.Size = new System.Drawing.Size(1240, 234);
             this.dataGridView8.TabIndex = 13;
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // importPriceDataGridViewTextBoxColumn
+            // 
+            this.importPriceDataGridViewTextBoxColumn.DataPropertyName = "importPrice";
+            this.importPriceDataGridViewTextBoxColumn.HeaderText = "importPrice";
+            this.importPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.importPriceDataGridViewTextBoxColumn.Name = "importPriceDataGridViewTextBoxColumn";
+            this.importPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // salePriceDataGridViewTextBoxColumn
+            // 
+            this.salePriceDataGridViewTextBoxColumn.DataPropertyName = "salePrice";
+            this.salePriceDataGridViewTextBoxColumn.HeaderText = "salePrice";
+            this.salePriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.salePriceDataGridViewTextBoxColumn.Name = "salePriceDataGridViewTextBoxColumn";
+            this.salePriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sold
+            // 
+            this.sold.HeaderText = "Sold";
+            this.sold.MinimumWidth = 6;
+            this.sold.Name = "sold";
+            this.sold.ReadOnly = true;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -618,6 +820,46 @@
             this.dataGridView7.Size = new System.Drawing.Size(615, 199);
             this.dataGridView7.TabIndex = 9;
             // 
+            // iDDataGridViewTextBoxColumn3
+            // 
+            this.iDDataGridViewTextBoxColumn3.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn3.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn3.Name = "iDDataGridViewTextBoxColumn3";
+            this.iDDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // createDateDataGridViewTextBoxColumn3
+            // 
+            this.createDateDataGridViewTextBoxColumn3.DataPropertyName = "createDate";
+            this.createDateDataGridViewTextBoxColumn3.HeaderText = "createDate";
+            this.createDateDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.createDateDataGridViewTextBoxColumn3.Name = "createDateDataGridViewTextBoxColumn3";
+            this.createDateDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // agentIDDataGridViewTextBoxColumn1
+            // 
+            this.agentIDDataGridViewTextBoxColumn1.DataPropertyName = "agentID";
+            this.agentIDDataGridViewTextBoxColumn1.HeaderText = "agentID";
+            this.agentIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.agentIDDataGridViewTextBoxColumn1.Name = "agentIDDataGridViewTextBoxColumn1";
+            this.agentIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // discountDataGridViewTextBoxColumn1
+            // 
+            this.discountDataGridViewTextBoxColumn1.DataPropertyName = "discount";
+            this.discountDataGridViewTextBoxColumn1.HeaderText = "discount";
+            this.discountDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.discountDataGridViewTextBoxColumn1.Name = "discountDataGridViewTextBoxColumn1";
+            this.discountDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // totalDataGridViewTextBoxColumn2
+            // 
+            this.totalDataGridViewTextBoxColumn2.DataPropertyName = "total";
+            this.totalDataGridViewTextBoxColumn2.HeaderText = "total";
+            this.totalDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.totalDataGridViewTextBoxColumn2.Name = "totalDataGridViewTextBoxColumn2";
+            this.totalDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -670,6 +912,35 @@
             this.dataGridView6.Size = new System.Drawing.Size(613, 199);
             this.dataGridView6.TabIndex = 5;
             // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // createDateDataGridViewTextBoxColumn2
+            // 
+            this.createDateDataGridViewTextBoxColumn2.DataPropertyName = "createDate";
+            this.createDateDataGridViewTextBoxColumn2.HeaderText = "createDate";
+            this.createDateDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.createDateDataGridViewTextBoxColumn2.Name = "createDateDataGridViewTextBoxColumn2";
+            this.createDateDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // totalDataGridViewTextBoxColumn1
+            // 
+            this.totalDataGridViewTextBoxColumn1.DataPropertyName = "total";
+            this.totalDataGridViewTextBoxColumn1.HeaderText = "total";
+            this.totalDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.totalDataGridViewTextBoxColumn1.Name = "totalDataGridViewTextBoxColumn1";
+            this.totalDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // receiptBindingSource
+            // 
+            this.receiptBindingSource.DataMember = "Receipt";
+            this.receiptBindingSource.DataSource = this.supplementFactsDataSet;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -696,291 +967,6 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "Statistic";
             // 
-            // indentifyCode
-            // 
-            this.indentifyCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.indentifyCode.DataPropertyName = "ID";
-            this.indentifyCode.HeaderText = "ID";
-            this.indentifyCode.MinimumWidth = 6;
-            this.indentifyCode.Name = "indentifyCode";
-            this.indentifyCode.ReadOnly = true;
-            this.indentifyCode.Width = 56;
-            // 
-            // GoodsName
-            // 
-            this.GoodsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.GoodsName.DataPropertyName = "name";
-            this.GoodsName.HeaderText = "Goods Name";
-            this.GoodsName.MinimumWidth = 6;
-            this.GoodsName.Name = "GoodsName";
-            this.GoodsName.ReadOnly = true;
-            // 
-            // importPrice
-            // 
-            this.importPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.importPrice.DataPropertyName = "importPrice";
-            this.importPrice.HeaderText = "Import Price";
-            this.importPrice.MinimumWidth = 6;
-            this.importPrice.Name = "importPrice";
-            this.importPrice.ReadOnly = true;
-            this.importPrice.Width = 131;
-            // 
-            // salePrice
-            // 
-            this.salePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.salePrice.DataPropertyName = "salePrice";
-            this.salePrice.HeaderText = "Sale Price";
-            this.salePrice.MinimumWidth = 6;
-            this.salePrice.Name = "salePrice";
-            this.salePrice.ReadOnly = true;
-            this.salePrice.Width = 111;
-            // 
-            // stock
-            // 
-            this.stock.DataPropertyName = "stock";
-            this.stock.HeaderText = "Stock";
-            this.stock.MinimumWidth = 6;
-            this.stock.Name = "stock";
-            this.stock.ReadOnly = true;
-            this.stock.Width = 110;
-            // 
-            // supplementFactsDataSet
-            // 
-            this.supplementFactsDataSet.DataSetName = "SupplementFactsDataSet";
-            this.supplementFactsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataMember = "Order";
-            this.orderBindingSource.DataSource = this.supplementFactsDataSet;
-            // 
-            // orderTableAdapter
-            // 
-            this.orderTableAdapter.ClearBeforeFill = true;
-            // 
-            // deliveryBindingSource
-            // 
-            this.deliveryBindingSource.DataMember = "Delivery";
-            this.deliveryBindingSource.DataSource = this.supplementFactsDataSet;
-            // 
-            // deliveryTableAdapter
-            // 
-            this.deliveryTableAdapter.ClearBeforeFill = true;
-            // 
-            // receiptBindingSource
-            // 
-            this.receiptBindingSource.DataMember = "Receipt";
-            this.receiptBindingSource.DataSource = this.supplementFactsDataSet;
-            // 
-            // receiptTableAdapter
-            // 
-            this.receiptTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn2
-            // 
-            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
-            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // createDateDataGridViewTextBoxColumn2
-            // 
-            this.createDateDataGridViewTextBoxColumn2.DataPropertyName = "createDate";
-            this.createDateDataGridViewTextBoxColumn2.HeaderText = "createDate";
-            this.createDateDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.createDateDataGridViewTextBoxColumn2.Name = "createDateDataGridViewTextBoxColumn2";
-            this.createDateDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // totalDataGridViewTextBoxColumn1
-            // 
-            this.totalDataGridViewTextBoxColumn1.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn1.HeaderText = "total";
-            this.totalDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.totalDataGridViewTextBoxColumn1.Name = "totalDataGridViewTextBoxColumn1";
-            this.totalDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn3
-            // 
-            this.iDDataGridViewTextBoxColumn3.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn3.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn3.Name = "iDDataGridViewTextBoxColumn3";
-            this.iDDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // createDateDataGridViewTextBoxColumn3
-            // 
-            this.createDateDataGridViewTextBoxColumn3.DataPropertyName = "createDate";
-            this.createDateDataGridViewTextBoxColumn3.HeaderText = "createDate";
-            this.createDateDataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.createDateDataGridViewTextBoxColumn3.Name = "createDateDataGridViewTextBoxColumn3";
-            this.createDateDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // agentIDDataGridViewTextBoxColumn1
-            // 
-            this.agentIDDataGridViewTextBoxColumn1.DataPropertyName = "agentID";
-            this.agentIDDataGridViewTextBoxColumn1.HeaderText = "agentID";
-            this.agentIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.agentIDDataGridViewTextBoxColumn1.Name = "agentIDDataGridViewTextBoxColumn1";
-            this.agentIDDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // discountDataGridViewTextBoxColumn1
-            // 
-            this.discountDataGridViewTextBoxColumn1.DataPropertyName = "discount";
-            this.discountDataGridViewTextBoxColumn1.HeaderText = "discount";
-            this.discountDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.discountDataGridViewTextBoxColumn1.Name = "discountDataGridViewTextBoxColumn1";
-            this.discountDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // totalDataGridViewTextBoxColumn2
-            // 
-            this.totalDataGridViewTextBoxColumn2.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn2.HeaderText = "total";
-            this.totalDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.totalDataGridViewTextBoxColumn2.Name = "totalDataGridViewTextBoxColumn2";
-            this.totalDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // goodsBindingSource
-            // 
-            this.goodsBindingSource.DataMember = "Goods";
-            this.goodsBindingSource.DataSource = this.supplementFactsDataSet;
-            // 
-            // goodsTableAdapter
-            // 
-            this.goodsTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn1
-            // 
-            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
-            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // createDateDataGridViewTextBoxColumn1
-            // 
-            this.createDateDataGridViewTextBoxColumn1.DataPropertyName = "createDate";
-            this.createDateDataGridViewTextBoxColumn1.HeaderText = "createDate";
-            this.createDateDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.createDateDataGridViewTextBoxColumn1.Name = "createDateDataGridViewTextBoxColumn1";
-            this.createDateDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "orderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "orderID";
-            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
-            this.statusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // createDateDataGridViewTextBoxColumn
-            // 
-            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "createDate";
-            this.createDateDataGridViewTextBoxColumn.HeaderText = "createDate";
-            this.createDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
-            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // agentIDDataGridViewTextBoxColumn
-            // 
-            this.agentIDDataGridViewTextBoxColumn.DataPropertyName = "agentID";
-            this.agentIDDataGridViewTextBoxColumn.HeaderText = "agentID";
-            this.agentIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.agentIDDataGridViewTextBoxColumn.Name = "agentIDDataGridViewTextBoxColumn";
-            this.agentIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // discountDataGridViewTextBoxColumn
-            // 
-            this.discountDataGridViewTextBoxColumn.DataPropertyName = "discount";
-            this.discountDataGridViewTextBoxColumn.HeaderText = "discount";
-            this.discountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "total";
-            this.totalDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
-            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paymentMethodDataGridViewTextBoxColumn
-            // 
-            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "paymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "paymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
-            this.paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paymentStatusDataGridViewTextBoxColumn
-            // 
-            this.paymentStatusDataGridViewTextBoxColumn.DataPropertyName = "paymentStatus";
-            this.paymentStatusDataGridViewTextBoxColumn.HeaderText = "paymentStatus";
-            this.paymentStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.paymentStatusDataGridViewTextBoxColumn.Name = "paymentStatusDataGridViewTextBoxColumn";
-            // 
-            // orderStatusDataGridViewTextBoxColumn
-            // 
-            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "orderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "orderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // importPriceDataGridViewTextBoxColumn
-            // 
-            this.importPriceDataGridViewTextBoxColumn.DataPropertyName = "importPrice";
-            this.importPriceDataGridViewTextBoxColumn.HeaderText = "importPrice";
-            this.importPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.importPriceDataGridViewTextBoxColumn.Name = "importPriceDataGridViewTextBoxColumn";
-            this.importPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // salePriceDataGridViewTextBoxColumn
-            // 
-            this.salePriceDataGridViewTextBoxColumn.DataPropertyName = "salePrice";
-            this.salePriceDataGridViewTextBoxColumn.HeaderText = "salePrice";
-            this.salePriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.salePriceDataGridViewTextBoxColumn.Name = "salePriceDataGridViewTextBoxColumn";
-            this.salePriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sold
-            // 
-            this.sold.HeaderText = "Sold";
-            this.sold.MinimumWidth = 6;
-            this.sold.Name = "sold";
-            this.sold.ReadOnly = true;
-            // 
             // customerOrderTab
             // 
             this.customerOrderTab.Controls.Add(this.label17);
@@ -992,6 +978,16 @@
             this.customerOrderTab.TabIndex = 5;
             this.customerOrderTab.Text = "Customer Order";
             this.customerOrderTab.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 16.30189F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(508, 43);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(239, 29);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Customer Order List";
             // 
             // dataGridView9
             // 
@@ -1014,15 +1010,6 @@
             this.dataGridView9.RowHeadersWidth = 45;
             this.dataGridView9.Size = new System.Drawing.Size(1240, 614);
             this.dataGridView9.TabIndex = 0;
-            // 
-            // customerOrderBindingSource
-            // 
-            this.customerOrderBindingSource.DataMember = "CustomerOrder";
-            this.customerOrderBindingSource.DataSource = this.supplementFactsDataSet;
-            // 
-            // customerOrderTableAdapter
-            // 
-            this.customerOrderTableAdapter.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn4
             // 
@@ -1073,15 +1060,30 @@
             this.emailDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             // 
-            // label17
+            // customerOrderBindingSource
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Times New Roman", 16.30189F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(508, 43);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(239, 29);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Customer Order List";
+            this.customerOrderBindingSource.DataMember = "CustomerOrder";
+            this.customerOrderBindingSource.DataSource = this.supplementFactsDataSet;
+            // 
+            // orderTableAdapter
+            // 
+            this.orderTableAdapter.ClearBeforeFill = true;
+            // 
+            // deliveryTableAdapter
+            // 
+            this.deliveryTableAdapter.ClearBeforeFill = true;
+            // 
+            // receiptTableAdapter
+            // 
+            this.receiptTableAdapter.ClearBeforeFill = true;
+            // 
+            // goodsTableAdapter
+            // 
+            this.goodsTableAdapter.ClearBeforeFill = true;
+            // 
+            // customerOrderTableAdapter
+            // 
+            this.customerOrderTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 
@@ -1101,23 +1103,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet)).EndInit();
             this.goodsOrderTab.ResumeLayout(false);
             this.goodsOrderTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.deliTab.ResumeLayout(false);
             this.deliTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryBindingSource)).EndInit();
             this.statisticTab.ResumeLayout(false);
             this.statisticTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplementFactsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).EndInit();
             this.customerOrderTab.ResumeLayout(false);
             this.customerOrderTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).EndInit();

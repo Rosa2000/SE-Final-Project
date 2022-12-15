@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="WindowsFormsApp.Agent">
+    <Position X="1" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgAAAAAAAAAAAAAIEAAAgAAAAAAIAAAA=</HashCode>
+      <FileName>Agent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindowsFormsApp.CustomerOrder">
+    <Position X="16.25" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAhAAgAAABAAAAAAIAAEAgAEAAAAAAAAA=</HashCode>
+      <FileName>CustomerOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowsFormsApp.CustomerOrderDetails">
+    <Position X="17" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAQAACAAMCAAAAAACA=</HashCode>
+      <FileName>CustomerOrderDetails.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Goods1" />
+      <Property Name="CustomerOrder1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindowsFormsApp.Delivery">
+    <Position X="5.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAgAAAAAABAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Delivery.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindowsFormsApp.Goods">
+    <Position X="12" Y="4.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAhAgAABAAAIAAAAAEAIAAAAACAAAAAAA=</HashCode>
+      <FileName>Goods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowsFormsApp.Order">
+    <Position X="4.75" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgAAQEhEBAAAAAAAAAAAAAEAAAAIAAQA=</HashCode>
+      <FileName>Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowsFormsApp.OrderDetails">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAgAAAAAAAAAAAAAAAAAAAAAAAAACAEEAAAAAAACA=</HashCode>
+      <FileName>OrderDetails.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order1" />
+      <Property Name="Goods1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindowsFormsApp.Receipt">
+    <Position X="8.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAABAIAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Receipt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowsFormsApp.ReceiptDetails">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAABAAAAAAAAAAAAAAACAAGAAAEAAACA=</HashCode>
+      <FileName>ReceiptDetails.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Receipt1" />
+      <Property Name="Goods1" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="8.83" />
+</ClassDiagram>

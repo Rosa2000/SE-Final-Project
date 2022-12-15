@@ -587,7 +587,7 @@ namespace WindowsFormsApp
             document.Close(true);
 
             //This will open the PDF file so, the result will be seen in default PDF Viewer.
-            //Process.Start("InvoicePDF.pdf");
+            Process.Start("InvoicePDF.pdf");
 
             #endregion
 
@@ -755,6 +755,38 @@ namespace WindowsFormsApp
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
+
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         }
